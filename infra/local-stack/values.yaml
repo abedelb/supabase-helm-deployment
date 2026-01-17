@@ -1,0 +1,159 @@
+# Override values for Supabase deployment in local Minikube
+
+supabase:
+  # Required secrets for Supabase services
+  secret:
+    jwt:
+      anonKey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS1kZW1vIiwicm9sZSI6ImFub24iLCJleHAiOjE5ODM4MTI5OTZ9.CRXP1A7WOeoJeXxjNni43kdQwgnWNReilDMblYTn_I0"
+      serviceKey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS1kZW1vIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImV4cCI6MTk4MzgxMjk5Nn0.EGIM96RAZx35lJzdJsyH-qQwv8Hdp7fsn3W0YpN81IU"
+      secret: "your-super-secret-jwt-token-with-at-least-32-characters-long"
+    db:
+      password: "postgres123456"
+      database: "postgres"
+    dashboard:
+      username: "supabase"
+      password: "supabase123456"
+      openAiApiKey: "fake-openai-key"
+    analytics:
+      publicAccessToken: "your-super-secret-and-long-logflare-key-public"
+      privateAccessToken: "your-super-secret-and-long-logflare-key-private"
+    smtp:
+      username: "fake_mail_user"
+      password: "fake_mail_password"
+
+  # Configure Studio (Supabase UI) for local access
+  studio:
+    image:
+      tag: "2025.11.10-sha-5291fe3"
+    service:
+      type: NodePort
+      nodePort: 30001
+    
+  # Configure Kong (API Gateway) for local access
+  kong:
+    service:
+      type: NodePort
+      nodePort: 30000
+  
+  # PostgreSQL Database configuration
+  db:
+    enabled: true
+    image:
+      tag: "15.8.1.085"
+    persistence:
+      enabled: true
+      size: 5Gi
+    resources:
+      requests:
+        memory: "512Mi"
+        cpu: "250m"
+      limits:
+        memory: "1Gi"
+        cpu: "500m"
+  
+  # Auth service configuration
+  auth:
+    enabled: true
+    image:
+      tag: "v2.182.1"
+    resources:
+      requests:
+        memory: "128Mi"
+        cpu: "100m"
+      limits:
+        memory: "256Mi"
+        cpu: "200m"
+  
+  # REST service configuration
+  rest:
+    enabled: true
+    image:
+      tag: "v13.0.7"
+    resources:
+      requests:
+        memory: "128Mi"
+        cpu: "100m"
+      limits:
+        memory: "256Mi"
+        cpu: "200m"
+  
+  # Realtime service configuration
+  realtime:
+    enabled: true
+    image:
+      tag: "v2.63.0"
+    resources:
+      requests:
+        memory: "128Mi"
+        cpu: "100m"
+      limits:
+        memory: "256Mi"
+        cpu: "200m"
+  
+  # Storage service configuration
+  storage:
+    enabled: true
+    image:
+      tag: "v1.29.0"
+    persistence:
+      enabled: true
+      size: 5Gi
+    resources:
+      requests:
+        memory: "128Mi"
+        cpu: "100m"
+      limits:
+        memory: "256Mi"
+        cpu: "200m"
+  
+  # Meta service configuration
+  meta:
+    enabled: true
+    image:
+      tag: "v0.93.1"
+    resources:
+      requests:
+        memory: "128Mi"
+        cpu: "100m"
+      limits:
+        memory: "256Mi"
+        cpu: "200m"
+
+  # Functions (Edge Runtime) service configuration
+  functions:
+    enabled: true
+    image:
+      tag: "v1.68.4"
+    resources:
+      requests:
+        memory: "128Mi"
+        cpu: "100m"
+      limits:
+        memory: "256Mi"
+        cpu: "200m"
+
+  # Vector service configuration
+  vector:
+    enabled: true
+    image:
+      tag: "0.28.1-alpine"
+    resources:
+      requests:
+        memory: "128Mi"
+        cpu: "100m"
+      limits:
+        memory: "256Mi"
+        cpu: "200m"
+        
+  # Imgproxy configuration
+  imgproxy:
+    enabled: true
+    image:
+      tag: "v3.8.0"
+    resources:
+      requests:
+        memory: "128Mi"
+        cpu: "100m"
+      limits:
+        memory: "256Mi"
+        cpu: "200m"

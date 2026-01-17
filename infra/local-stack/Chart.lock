@@ -1,0 +1,6 @@
+dependencies:
+- name: supabase
+  repository: file://../supabase-kubernetes/charts/supabase
+  version: 0.3.1
+digest: sha256:5274d75a2dfefbf81cc5a0e8f476529614f335cddc6afb5b701a593bc55bf81f
+generated: "2026-01-17T20:46:30.159836+01:00"
